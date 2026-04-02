@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Autentikasi Perasaan v1.0</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --accent-color: #00bcd4;
+            --warning-color: #ffc107;
+        }
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(0, 188, 212, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        h2 { color: var(--accent-color); }
+        .notice {
+            color: var(--warning-color);
+            font-weight: bold;
+            border: 1px dashed var(--warning-color);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #333;
+            color: var(--accent-color);
+            padding: 10px;
+            border-radius: 5px;
+            width: 80%;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 15px;
+            outline: none;
+        }
+        button.tkj-btn {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        button.tkj-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+        #error-msg { color: #ff5252; font-size: 14px; display: none; margin-top: 10px;}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>[SISTEM KEAMANAN]</h2>
+        <p class="notice">"Untuk password minta ke sang pembuat website"</p>
+        <input type="text" id="password-input" placeholder="Masukkan Kode..." autocomplete="off">
+        <br>
+        <button class="tkj-btn" onclick="checkPassword()">AKSES MASUK</button>
+        <p id="error-msg">Kode Salah. Akses Ditolak.</p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const passwordInput = document.getElementById('password-input').value.toUpperCase();
+            
+            // Password ejaan NATO "AZIZAH" (Tanpa Spasi)
+            const correctHash = "ALPHAZULUINDIAZULUALPHAHOTEL"; 
+
+            if (passwordInput === correctHash) {
+                // Berpindah ke file inti.html di GitHub Pages
+                window.location.href = "inti.html";
+            } else {
+                document.getElementById('error-msg').style.display = 'block';
+                document.getElementById('password-input').value = '';
+            }
+        }
+
+        // Masuk pakai Enter
+        document.getElementById("password-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") { checkPassword(); }
+        });
+    </script>
+</body>
+</html>
