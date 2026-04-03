@@ -86,9 +86,11 @@
 
     <script>
         function checkPassword() {
-            const passwordInput = document.getElementById('password-input').value.toUpperCase();
+            // Mengambil input, menghapus spasi di depan/belakang, dan memaksa huruf kapital
+            const passwordInput = document.getElementById('password-input').value.trim().toUpperCase();
             
-            const secureHash = "f91d575402a45ce372224d06a0907409f7a752207b8971f16da0972621743015"; 
+            // Ini adalah Hash SHA-256 dari kata "AZIZAH"
+            const secureHash = "e0cf98609503da04fa3e990ff594098939634e2c8846da1f2d25081075677940"; 
             
             const inputHash = CryptoJS.SHA256(passwordInput).toString();
 
