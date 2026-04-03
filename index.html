@@ -87,7 +87,7 @@
     <script>
         function checkPassword() {
             const passwordInput = document.getElementById('password-input').value.toUpperCase();
-            const secureHash = "f9872e4299da73111815d39d91f42d207ec224f8ee7be29598a4afca437da186"; 
+            const secureHash = "f91d575402a45ce372224d06a0907409f7a752207b8971f16da0972621743015";
             const inputHash = CryptoJS.SHA256(passwordInput).toString();
 
             if (inputHash === secureHash) {
