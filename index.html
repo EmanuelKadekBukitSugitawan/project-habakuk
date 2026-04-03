@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Autentikasi Perasaan v2.0</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <style>
         :root {
             --bg-color: #121212;
@@ -86,15 +85,14 @@
 
     <script>
         function checkPassword() {
-            // Mengambil input, menghapus spasi di depan/belakang, dan memaksa huruf kapital
+            // Mengambil input, hapus spasi, dan paksa jadi huruf kapital
             const passwordInput = document.getElementById('password-input').value.trim().toUpperCase();
             
-            // Ini adalah Hash SHA-256 dari kata "AZIZAH"
-            const secureHash = "e0cf98609503da04fa3e990ff594098939634e2c8846da1f2d25081075677940"; 
-            
-            const inputHash = CryptoJS.SHA256(passwordInput).toString();
+            // Mengubah inputan user ke format Base64
+            const inputBase64 = btoa(passwordInput);
 
-            if (inputHash === secureHash) {
+            // QVpJWkFI adalah kode Base64 dari kata "AZIZAH"
+            if (inputBase64 === "QVpJWkFI") {
                 window.location.href = "inti.html";
             } else {
                 document.getElementById('error-msg').style.display = 'block';
@@ -102,6 +100,7 @@
             }
         }
 
+        // Fungsi agar bisa tekan Enter
         document.getElementById("password-input").addEventListener("keypress", function(event) {
             if (event.key === "Enter") { checkPassword(); }
         });
